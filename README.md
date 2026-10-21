@@ -28,4 +28,6 @@ Everything comes from the laundromat's current website — nothing is invented:
 
 ## Deploy on Vercel
 
-New Project → import this repository → **Root Directory: `sites/koala-park`** → Deploy.
+New Project → import **`matischroder/koala-park-website`** → leave Root Directory empty → Deploy.
+
+(From the `helensvalelandscapesupplies` monorepo instead: Root Directory **`sites/koala-park`**.)
