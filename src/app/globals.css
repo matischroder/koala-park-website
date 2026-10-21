@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* Straight from the shop: teal trim, navy chairs, sunny bunting, white walls, terrazzo floor. */
+@theme {
+  --color-ink: #17233d;
+  --color-ink-soft: #4a5570;
+  --color-paper: #fffdf7;
+  --color-paper-2: #f3efe4;
+  --color-teal: #2bb8a8;
+  --color-teal-dark: #0d7468;
+  --color-mint: #dff5f1;
+  --color-sun: #ffd23f;
+  --color-coral: #ff6b55;
+  --color-coral-dark: #c8412d;
+
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-script: var(--font-caveat), cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--color-sun); color: var(--color-ink); }
+:focus-visible { outline: 3px solid var(--color-teal-dark); outline-offset: 3px; }
+
+@utility container-site {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) { padding-inline: 2rem; }
+}
+
+/* Skip rendering long below-the-fold sections until they're near the viewport. */
+@utility defer-render {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1000px;
+}
+
+/* Bunting: a strip of little triangle flags, like the ones strung across the shop. */
+@utility bunting {
+  height: 18px;
+  background:
+    linear-gradient(135deg, transparent 50%, var(--color-paper) 50%) 0 0 / 28px 18px,
+    linear-gradient(225deg, transparent 50%, var(--color-paper) 50%) 0 0 / 28px 18px,
+    linear-gradient(90deg, var(--color-teal) 0 28px, var(--color-sun) 28px 56px, var(--color-coral) 56px 84px, var(--color-ink) 84px 112px) 0 0 / 112px 18px;
+}
+
+/* Black-and-white terrazzo, like the floor. */
+@utility terrazzo {
+  background-color: var(--color-paper);
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--color-ink) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 70% 60%, var(--color-ink) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 45% 85%, color-mix(in srgb, var(--color-ink) 55%, transparent) 0 2.5px, transparent 3px),
+    radial-gradient(circle at 85% 15%, color-mix(in srgb, var(--color-ink) 40%, transparent) 0 1.5px, transparent 2px);
+  background-size: 46px 46px, 38px 38px, 54px 54px, 30px 30px;
+}
+
+@keyframes fade-up { from { opacity: 0; transform: translateY(8px); } }
+@utility animate-fade-up { animation: fade-up 450ms cubic-bezier(.2,.7,.2,1) both; }
+
+@keyframes spin-drum { to { transform: rotate(360deg); } }
+@utility animate-drum { animation: spin-drum 2.4s linear infinite; }
