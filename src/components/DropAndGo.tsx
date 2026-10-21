@@ -6,7 +6,7 @@ import locker from "../../public/photos/locker.jpg";
 
 export function DropAndGo() {
   return (
-    <section id="drop-and-go" aria-labelledby="dropgo-title" className="defer-render py-16 sm:py-24">
+    <section id="drop-and-go" aria-labelledby="dropgo-title" className="py-16 sm:py-24">
       <div className="container-site">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div>

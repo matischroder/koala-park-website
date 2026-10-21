@@ -2,8 +2,10 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { fullAddress } from "@/content/site";
+import { washMinutes } from "@/content/pricing";
+import { hoursLine } from "@/lib/hours";
 
-export const alt = "Koala Park Laundromat, Burleigh Heads — open 5.30am to 10pm, 365 days";
+export const alt = `Koala Park Laundromat, Burleigh Heads — open ${hoursLine}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -24,10 +26,10 @@ export default async function OpengraphImage() {
             <div style={{ fontSize: 40, letterSpacing: 8, fontWeight: 700 }}>LAUNDROMAT</div>
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 60, lineHeight: 1.05 }}>Six baskets of washing. 24 minutes.</div>
+            <div style={{ fontSize: 60, lineHeight: 1.05 }}>{`Six baskets of washing. ${washMinutes} minutes.`}</div>
             <div style={{ marginTop: 24, fontSize: 26, color: "#4a5570" }}>{fullAddress}</div>
             <div style={{ marginTop: 14, display: "flex" }}>
-              <div style={{ background: "#ffd23f", padding: "10px 20px", borderRadius: 14, fontSize: 28, fontWeight: 700 }}>Open 5.30am – 10pm · 365 days</div>
+              <div style={{ background: "#ffd23f", padding: "10px 20px", borderRadius: 14, fontSize: 28, fontWeight: 700 }}>{`Open ${hoursLine}`}</div>
             </div>
           </div>
         </div>

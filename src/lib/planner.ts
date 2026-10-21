@@ -14,7 +14,7 @@ export type Plan = {
  */
 export function planWash(baskets: number, temp: Temp, card: boolean): Plan {
   const rate = (w: Washer) => w.prices[card ? "hot" : temp];
-  const max = baskets + Math.max(...washers.map((w) => w.baskets));
+  const max = baskets;
   // best[b] = cheapest way to wash at least b baskets; ties go to fewer cycles.
   const best: { cost: number; cycles: number; pick: number }[] = Array.from({ length: max + 1 }, () => ({ cost: Infinity, cycles: Infinity, pick: -1 }));
   best[0] = { cost: 0, cycles: 0, pick: -1 };

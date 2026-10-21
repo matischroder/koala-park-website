@@ -25,8 +25,11 @@ export type OpenStatus = { open: boolean; label: string; detail: string };
 export function openStatus(date = new Date()): OpenStatus {
   const now = brisbaneMinutes(date);
   if (now >= toMinutes(site.opens) && now < toMinutes(site.closes)) {
-    const lastWash = now >= toMinutes(site.lastWashIfDrying) ? ` · last wash ${formatTime(site.lastWash)}` : "";
-    return { open: true, label: "Open now", detail: `until ${formatTime(site.closes)}${lastWash}` };
+    let detail = `until ${formatTime(site.closes)}`;
+    if (now >= toMinutes(site.lastWash)) detail += " · no more washes today";
+    else if (now >= toMinutes(site.lastWashIfDrying)) detail += ` · last wash ${formatTime(site.lastWash)} (no time to dry)`;
+    else if (now >= toMinutes(site.lastWashIfDrying) - 60) detail += ` · start by ${formatTime(site.lastWashIfDrying)} to dry`;
+    return { open: true, label: "Open now", detail };
   }
   return { open: false, label: "Closed now", detail: `Opens ${now < toMinutes(site.opens) ? "today" : "tomorrow"} ${formatTime(site.opens)}` };
 }

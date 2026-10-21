@@ -21,7 +21,12 @@ export function WhileYouWait() {
       if (s === 0 && !notified.current) {
         notified.current = true;
         navigator.vibrate?.([200, 100, 200]);
-        if ("Notification" in window && Notification.permission === "granted") new Notification("Your wash is done! 🧺");
+        if ("Notification" in window && Notification.permission === "granted") {
+          // Android Chrome only allows notifications from a service worker; there, vibration is the alert.
+          try {
+            new Notification("Your wash is done! 🧺");
+          } catch {}
+        }
       }
     };
     tick();
@@ -43,7 +48,7 @@ export function WhileYouWait() {
   const progress = 1 - left / TOTAL;
 
   return (
-    <section id="while-you-wait" aria-labelledby="wait-title" className="defer-render bg-mint py-16 sm:py-24">
+    <section id="while-you-wait" aria-labelledby="wait-title" className="bg-mint py-16 sm:py-24">
       <div className="container-site grid gap-12 lg:grid-cols-[22rem_1fr] lg:gap-16">
         <div className="flex flex-col items-center rounded-[2rem] bg-paper p-8 text-center ring-2 ring-ink lg:sticky lg:top-24 lg:self-start">
           <p className="font-script text-3xl text-teal-dark">wash timer</p>
@@ -68,12 +73,12 @@ export function WhileYouWait() {
             </div>
           </div>
           <p className="mt-4 text-sm text-ink-soft" aria-live="polite">
-            {done ? "Your wash is done — time for the dryer." : running ? "Washing… go and enjoy Burleigh." : "Every wash cycle takes 24 minutes."}
+            {done ? "Your wash is done — time for the dryer." : running ? "Washing… go and enjoy Burleigh." : `Every wash cycle takes ${washMinutes} minutes.`}
           </p>
           <div className="mt-5 flex gap-2">
             {!running && (
               <button type="button" onClick={start} className="h-12 rounded-full bg-ink px-6 font-bold text-paper hover:bg-teal-dark">
-                {done ? "Start another" : "Start 24-min timer"}
+                {done ? "Start another" : `Start ${washMinutes}-min timer`}
               </button>
             )}
             {endsAt !== null && (

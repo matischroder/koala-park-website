@@ -6,7 +6,7 @@ import basket from "../../public/photos/basket-table.jpg";
 
 export function Community() {
   return (
-    <section id="about" aria-labelledby="about-title" className="defer-render bg-ink py-16 text-paper sm:py-24">
+    <section id="about" aria-labelledby="about-title" className="bg-ink py-16 text-paper sm:py-24">
       <div className="container-site">
         <p className="font-script text-3xl text-teal">clean, friendly &amp; well loved</p>
         <h2 id="about-title" className="mt-1 max-w-3xl font-display text-4xl leading-none font-semibold sm:text-5xl">

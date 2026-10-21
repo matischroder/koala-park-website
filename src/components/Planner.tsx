@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
-import { cardNote, dryers, type Temp } from "@/content/pricing";
+import { cardNote, dryers, washMinutes, type Temp } from "@/content/pricing";
 import { planWash } from "@/lib/planner";
 import { WasherMark } from "./Icons";
 
@@ -103,7 +103,7 @@ export function Planner() {
               <p className="font-display text-5xl font-semibold text-sun tabular-nums">${plan.total}</p>
             </div>
             <p className="mt-auto pt-6 text-sm leading-relaxed text-paper/75">
-              Then dry: {dryers.count} gas dryers ({dryers.kg}kg) at {dryers.coin}, or {dryers.card}. Every wash cycle is 24 minutes.
+              Then dry: {dryers.count} gas dryers ({dryers.kg}kg) at {dryers.coin}, or {dryers.card}. Every wash cycle is {washMinutes} minutes.
             </p>
           </div>
         </div>

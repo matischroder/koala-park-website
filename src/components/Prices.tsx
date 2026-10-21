@@ -5,7 +5,7 @@ import chalkboard from "../../public/photos/washers-chalkboard.jpg";
 
 export function Prices() {
   return (
-    <section id="prices" aria-labelledby="prices-title" className="defer-render py-16 sm:py-24">
+    <section id="prices" aria-labelledby="prices-title" className="py-16 sm:py-24">
       <div className="container-site">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
